@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowUp</title>
+    <style>
+        input {
+            width: 80vw;
+            margin-left: 10vw;
+            font-size: 22px;
+            margin-top: 50px;
+            height: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            text-shadow: orange 0.5px 0.5px 0.5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Chat with a startup mind</h1>
+    <form method="post" action="email">
+        {% csrf_token %}
+        <input placeholder="Enter the your email id" name="email1" required>
+        <input placeholder="Enter the recepient's email id" name="email2" required>
+        <input type="submit" class="a" style="background-color:rgb(8, 8, 31);color:white;">
+    </form>
+    <marquee direction="left" style="font-size:20px; margin-top:30px;cursor: pointer;">Kindly provide email id of you
+        and the person you
+        want to chat with (you can find it in
+        profile page).You'll recieve a mail regarding chat.</marquee>
+</body>
+
+</html>

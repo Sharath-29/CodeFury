@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'user.apps.UserConfig',
     'crispy_forms',
-    'chat.apps.ChatConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -99,6 +99,10 @@ AUTH_PASSWORD_VALIDATORS = [
     
 ]
 
+#payment changes
+STRIPE_PUB_KEY = 'pk_test_51JPrBjSJvOZ5WaiRxnSNV0DUuwalZPvKbhq6HvKEuyJtjAdQHf8x3eJ5s8LmdGwuOZFBaBM3piaMLCVKKj6DCic700rfQKykDy'
+STRIPE_SECRET_KEY = 'sk_test_51JPrBjSJvOZ5WaiRMkVrQsPKY9NWB3LV2LkAVksCRrWbaeCm0yxeDXvcd4oGC1sz3xNmXjFGrK5lweBeGG1AXMwm00zCMyOwYk'
+#payment changes ends
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -136,6 +140,6 @@ LOGIN_REDIRECT_URL = 'home'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'contactatteamchaos@gmail.com'
-EMAIL_HOST_PASSWORD = 'ujfrylrqinfdiwzv'
+EMAIL_HOST_USER = 'codefury.growup@gmail.com'
+EMAIL_HOST_PASSWORD = 'wsebqkwjdxmgeowf'
 EMAIL_USE_TLS = True

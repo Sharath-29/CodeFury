@@ -2,6 +2,7 @@
 {% load static %}
 {% load poll_extras %}
 {% block main_head %}
+
 <style>
   #header {
 
@@ -13,19 +14,26 @@
     transition: all .08s linear;
   }
 </style>
+
 {% endblock main_head %}
 
 {% block main_body %}
+
 <div class="row">
   <div class="col-md-3 mb-2">
     <div class="brand">
       <img src="{% static 'main/img/logo.png' %}" class="logo w-25">
+      <h1
+        style="text-align:center;float:right;margin-right:20px;margin-top:8px;text-shadow: orange 2px 2px 2px; font-weight:bold;">
+        GrowUp</h1>
     </div>
+
     <div class="w-100 mt-1">
       <div id="header"></div>
       <div id="profile">
         <div class="image">
           <img src="{{request.user.profile.profile_pic.url}}" alt="" />
+
         </div>
         <div class="name">
           {{request.user.get_full_name}}
@@ -211,7 +219,7 @@
 
   </div>
   <div class="col-md-3">
-    <h5>Peoples may you know</h5>
+    <h5>Startup minds you may know</h5>
     {% for usr in non_followed_user %}
     <div class="card mb-1" style="max-width: 540px;">
       <div class="row no-gutters">
@@ -236,5 +244,18 @@
     {% endfor %}
   </div>
 </div>
+
+<div style="color:#080d2b;transform:translateY(30vh);width: fit-content;padding: 5px;position: fixed;   ">
+  <a href="/chat_page"> <i style="font-size: 50px;" class="fa fa-comments" aria-hidden="true"></i></a>
+
+</div>
+<!-- Payment changes -->
+<div class="nickname">
+  <button
+    style="color:white;background-color:#080d2b;transform:translateY(30vh);width: fit-content;padding: 10px;position: fixed;float:right;width:fit-content; margin-left:70vw;"><a
+      href="{% url 'funding' %}" style="color:white">Donate</a></button>
+</div>
+<!--payment changes ends here-->
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 {% endblock main_body %}

@@ -7,6 +7,13 @@ from user.models import Notification
 from .models import Post, Like, Dislike, Comment, SubComment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.core.mail import send_mail
+from django.conf import settings
+import random
+import stripe
+from django.views.generic.base import TemplateView
+stripe.api_key = settings.STRIPE_SECRET_KEY
+from . forms import FundingForm
 
 @login_required
 def home(request):
@@ -171,3 +178,54 @@ def add_subcomment(request):
 			'id': obj.id,
 			})
 	raise Http404()
+
+@login_required
+def chat_page(request):
+
+	return render(request, 'main/chat.html')
+
+def email(request):
+	emails= request.POST.get('email1')
+	emailr=request.POST.get('email2')
+	x=random.randint(1000,9999)
+	messs ="Hello\n Your chat room no is: "+str(x)+" \n \n chat room link: http://sharathab.pythonanywhere.com/ \n\n Happy Chatting..!\n\n\n Regards,\n Team GrowUP"
+	messr ="Hello \n"+emails+" wants to chat with you.\nYour chat room no is: "+str(x)+" \n \n chat room link: http://sharathab.pythonanywhere.com/  \n\n Happy Chatting..!\n\n\n Regards,\n Team GrowUP"
+	try :
+		send_mail(
+				"GrowUP - Please find your chat details",
+				messs,
+				settings.EMAIL_HOST_USER,
+				[emails],
+				fail_silently = False
+				)
+		send_mail(
+				"GrowUP - Please find your chat details",
+				messr,
+				settings.EMAIL_HOST_USER,
+				[emailr],
+				fail_silently = False
+				)
+		return render(request, 'main/mailsent.html')
+	except:
+		return render(request,'main/mailrejected.html')
+
+#payment changes
+class funding_view(TemplateView):
+	template_name = 'main/funding.html'
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['key'] = settings.STRIPE_PUB_KEY
+		return context	
+	
+
+def charge(request):
+    if request.method == 'POST':
+        charge = stripe.Charge.create(
+            amount = 50000,
+            currency = 'INR',
+            description = 'Payment Gateway',
+            source = request.POST['stripeToken']
+        )
+        return render(request,'main/charge.html')
+#payment changes ends
