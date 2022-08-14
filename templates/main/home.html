@@ -28,6 +28,7 @@
         GrowUp</h1>
     </div>
 
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <div class="w-100 mt-1">
       <div id="header"></div>
       <div id="profile">
@@ -50,10 +51,20 @@
             <span class="count" id="followers_count">{{user.profile.followers.count}}</span>
             followers
           </span>
+
         </div>
+        <p class="nickname" style="margin-top:70px">
+          <button style="color:white;background-color:#080d2b;padding: 5px; "><a href="{% url 'funding' %}"
+              style="color:white">Donate</a></button>
+        </p>
+        <p style="color:#080d2b;  ">
+          <a href="/chat_page"> <i style="font-size: 40px;" class="fa fa-comments" aria-hidden="true"></i></a>
+          <!--payment changes ends here-->
+        </p>
       </div>
     </div>
   </div>
+
   <div class="col-md-6">
 
     <div class="well well-sm well-social-post">
@@ -83,7 +94,8 @@
               <img class="rounded-circle" width="45" height="45" src="{{post.user.profile.profile_pic.url}}" alt="">
             </div>
             <div class="ml-2">
-              <div class="h5 m-0"><a href="{% url 'profile' post.user.username %}">{{post.user.get_full_name}}</a></div>
+              <div class="h5 m-0"><a href="{% url 'profile' post.user.username %}">{{post.user.get_full_name}}</a>
+              </div>
               <div class="text-muted" style="font-size: 0.8rem;">{{post.user.username}}</div>
             </div>
           </div>
@@ -193,7 +205,6 @@
     </div>
     {% endfor %}
 
-
     <div class="float-right">
       <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -245,17 +256,10 @@
   </div>
 </div>
 
-<div style="color:#080d2b;transform:translateY(30vh);width: fit-content;padding: 5px;position: fixed;   ">
-  <a href="/chat_page"> <i style="font-size: 50px;" class="fa fa-comments" aria-hidden="true"></i></a>
+
 
 </div>
 <!-- Payment changes -->
-<div class="nickname">
-  <button
-    style="color:white;background-color:#080d2b;transform:translateY(30vh);width: fit-content;padding: 10px;position: fixed;float:right;width:fit-content; margin-left:70vw;"><a
-      href="{% url 'funding' %}" style="color:white">Donate</a></button>
-</div>
-<!--payment changes ends here-->
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 
 {% endblock main_body %}
